@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bài tập Array</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-green-50 min-h-screen p-6">
+    <div class="max-w-xl mx-auto space-y-6">
+
+        <!-- Input + Button -->
+        <div class="flex gap-4 items-center">
+            <input id="numberInput" type="number" class="flex-1 p-2 border rounded shadow" placeholder="Nhập số...">
+            <button onclick="addNumber()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Thêm
+                số</button>
+            <button onclick="clearAll()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">🗑 Xoá tất
+                cả</button>
+        </div>
+
+        <!-- Dãy số đã nhập -->
+        <div id="arrayDisplay" class="bg-green-100 p-3 rounded">👉 Dãy số: </div>
+
+        <!-- Tổng số dương -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('sumDropdown', 'arrowSum')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>1️⃣ Tổng số dương</span>
+                <span id="arrowSum">▼</span>
+            </button>
+            <div id="sumDropdown" class="px-4 py-2 hidden space-y-2">
+                <button onclick="updatePositiveSum()"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Tính</button>
+                <div>Tổng các số dương là: <span id="positiveSum" class="font-semibold text-green-700">0</span></div>
+            </div>
+        </div>
+
+
+        <!-- Đếm số dương -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('countDropdown', 'arrowCount')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>2️⃣ Đếm số dương</span>
+                <span id="arrowCount">▼</span>
+            </button>
+            <div id="countDropdown" class="px-4 py-2 hidden space-y-2">
+                <button onclick="countPositiveNumbers()"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Tính</button>
+                <div>Số lượng số dương là: <span id="positiveCount" class="font-semibold text-blue-700">0</span></div>
+            </div>
+        </div>
+
+        <!-- Tìm số nhỏ nhất -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('minDropdown', 'arrowMin')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>3️⃣ Tìm số nhỏ nhất</span>
+                <span id="arrowMin">▼</span>
+            </button>
+            <div id="minDropdown" class="px-4 py-2 hidden space-y-2">
+                <button onclick="findMin()"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Tính</button>
+                <div>Số nhỏ nhất là: <span id="minValue" class="font-semibold text-red-700">?</span></div>
+            </div>
+        </div>
+
+        <!-- Tìm số dương nhỏ nhất -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('minPositiveDropdown', 'arrowMinPos')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>4️⃣ Tìm số dương nhỏ nhất</span>
+                <span id="arrowMinPos">▼</span>
+            </button>
+            <div id="minPositiveDropdown" class="px-4 py-2 hidden space-y-2">
+                <button onclick="findMinPositive()"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Tính</button>
+                <div>Số dương nhỏ nhất là: <span id="minPositiveValue" class="font-semibold text-purple-700">?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tìm số chẵn cuối cùng -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('lastEvenDropdown', 'arrowLastEven')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>5️⃣ Tìm số chẵn cuối cùng</span>
+                <span id="arrowLastEven">▼</span>
+            </button>
+            <div id="lastEvenDropdown" class="px-4 py-2 hidden space-y-2">
+                <button onclick="findLastEven()"
+                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">Tính</button>
+                <div>Số chẵn cuối cùng là: <span id="lastEvenValue" class="font-semibold text-indigo-700">?</span></div>
+            </div>
+        </div>
+
+        <!-- Đổi chỗ -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('swapDropdown', 'arrowSwap')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>6️⃣ Đổi chỗ</span>
+                <span id="arrowSwap">▼</span>
+            </button>
+            <div id="swapDropdown" class="px-4 py-4 hidden space-y-4">
+
+                <!-- Input -->
+                <div class="flex gap-4">
+                    <input id="pos1" type="number" placeholder="Nhập số vị trí 1" class="w-1/2 p-2 border rounded">
+                    <input id="pos2" type="number" placeholder="Nhập số vị trí 2" class="w-1/2 p-2 border rounded">
+                </div>
+
+                <!-- Button -->
+                <button onclick="swapPositions()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đổi
+                    chỗ</button>
+
+                <!-- Kết quả -->
+                <div id="swapResult" class="bg-green-100 p-3 rounded hidden"></div>
+            </div>
+        </div>
+
+        <!-- Sắp xếp tăng dần -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('sortDropdown', 'arrowSort')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>7️⃣ Sắp xếp tăng dần</span>
+                <span id="arrowSort">▼</span>
+            </button>
+            <div id="sortDropdown" class="px-4 py-4 hidden space-y-4">
+                <button onclick="sortAscending()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Sắp
+                    xếp</button>
+                <div id="sortResult" class="bg-green-100 p-3 rounded hidden"></div>
+            </div>
+        </div>
+
+        <!-- Tìm số nguyên tố đầu tiên -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('primeDropdown', 'arrowPrime')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>8️⃣ Tìm số nguyên tố đầu tiên</span>
+                <span id="arrowPrime">▼</span>
+            </button>
+            <div id="primeDropdown" class="px-4 py-4 hidden space-y-4">
+                <button onclick="findFirstPrime()"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tìm</button>
+                <div id="primeResult" class="bg-green-100 p-3 rounded hidden"></div>
+            </div>
+        </div>
+
+        <!-- Đếm số nguyên -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('countIntDropdown', 'arrowInt')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>9️⃣ Đếm số nguyên</span>
+                <span id="arrowInt">▼</span>
+            </button>
+            <div id="countIntDropdown" class="px-4 py-4 hidden space-y-4">
+                <button onclick="countIntegers()"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đếm</button>
+                <div id="intResult" class="bg-green-100 p-3 rounded hidden"></div>
+            </div>
+        </div>
+
+        <!-- So sánh số âm và số dương -->
+        <div class="border rounded">
+            <button onclick="toggleDropdown('compareDropdown', 'arrowCompare')"
+                class="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 flex justify-between items-center">
+                <span>🔟 So sánh số âm và số dương</span>
+                <span id="arrowCompare">▼</span>
+            </button>
+            <div id="compareDropdown" class="px-4 py-4 hidden space-y-4">
+                <button onclick="compareNegPos()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">So
+                    sánh</button>
+                <div id="compareResult" class="bg-green-100 p-3 rounded hidden"></div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</body>
+
+</html>
